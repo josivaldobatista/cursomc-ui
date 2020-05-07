@@ -26,7 +26,7 @@ import { CategoriaService } from '../services/domain/categoria.service';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    CategoriaService 
+    CategoriaService
   ]
 })
 export class AppModule {}
