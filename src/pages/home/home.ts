@@ -27,17 +27,26 @@ export class HomePage {
     this.menu.swipeEnable(false);
   }
 
+  ionViewDidEnter() {
+    this.outh.refreshToken()
+      .subscribe(response => {
+        this.outh.successfulLogin(response.headers.get('Authorization'));
+        this.navCtrl.setRoot('CategoriasPage');
+      },
+        error => { });
+  }
+
   ionViewDidLeave() {
     this.menu.swipeEnable(true);
   }
 
   login() {
     this.outh.authenticate(this.creds)
-        .subscribe(response => {
-          this.outh.successfulLogin(response.headers.get('Authorization'));
-          this.navCtrl.setRoot('CategoriasPage');
-        },
-        error => {})
+      .subscribe(response => {
+        this.outh.successfulLogin(response.headers.get('Authorization'));
+        this.navCtrl.setRoot('CategoriasPage');
+      },
+        error => { })
   }
 
 }
